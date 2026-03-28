@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mau Jadi Pacarku? ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Dancing Script', cursive;
+            overflow: hidden;
+            height: 100vh;
+            position: relative;
+            transition: all 0.8s ease;
+        }
+
+        /* Background Gradient */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ffd6e8, #ffc2dc, #ffb3d1, #ffe4f0, #fff0f6);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: -2;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Hati Berjatuhan */
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: #ff69b4;
+            pointer-events: none;
+            animation: fall linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Container Utama */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Judul */
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            margin-bottom: 2rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Gambar Hati Besar */
+        .big-heart {
+            font-size: clamp(8rem, 20vw, 15rem);
+            color: #ff1493;
+            margin-bottom: 3rem;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(255,20,147,0.8));
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            14% { transform: scale(1.1); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.1); }
+            70% { transform: scale(1); }
+        }
+
+        /* Tombol Container */
+        .buttons {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Tombol Umum */
+        .btn {
+            padding: 1.2rem 3rem;
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            font-family: 'Dancing Script', cursive;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            min-width: 180px;
+            text-align: center;
+        }
+
+        /* Tombol YES */
+        .btn-yes {
+            background: linear-gradient(45deg, #00ff88, #00cc6a);
+            color: white;
+            font-weight: 700;
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,255,136,0.6);
+        }
+
+        /* Tombol NO (Troll Effect) */
+        .btn-no {
+            background: linear-gradient(45deg, #ff4757, #ff3838);
+            color: white;
+            font-weight: 700;
+            position: relative;
+            animation: shake 0.5s ease-in-out infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        /* Popup Success */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 3rem;
+            border-radius: 30px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            animation: popupIn 0.8s ease-out;
+            max-width: 90%;
+        }
+
+        @keyframes popupIn {
+            0% {
+                transform: scale(0.5) rotate(-10deg);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        .popup h2 {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            margin-bottom: 1rem;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .hearts-rotate {
+            font-size: 4rem;
+            animation: rotate 2s linear infinite;
+            margin: 1rem 0;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .share-btn {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            margin-top: 1.5rem;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+        }
+
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ff69b4;
+            pointer-events: none;
+            z-index: 999;
+            animation: confetti-fall 3s linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 80%;
+                max-width: 300px;
+            }
+        }
+
+        /* Rainbow Background */
+        .rainbow-bg {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: rainbowShift 8s ease infinite;
+        }
+
+        @keyframes rainbowShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Hide scrollbar */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gradient">
+    <!-- Hati Berjatuhan -->
+    <div class="hearts-container"></div>
+
+    <!-- Halaman Utama -->
+    <div class="container" id="mainPage">
+        <div class="big-heart">💖</div>
+        <h1>Mau Jadi Pacarku?</h1>
+        <p style="font-size: clamp(1.2rem, 3vw, 1.5rem); color: white; margin-bottom: 2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+            Pilih jawabanmu... 💕
+        </p>
+        <div class="buttons">
+            <button class="btn btn-yes" id="yesBtn">YES 😍</button>
+            <button class="btn btn-no" id="noBtn">NO 😢</button>
+        </div>
+    </div>
+
+    <!-- Popup Success -->
+    <div class="popup" id="successPopup">
+        <div class="popup-content">
+            <h2>YESS!! 🎉</h2>
+            <div class="hearts-rotate">💖💕💗💖</div>
+            <p style="font-size: 1.5rem; margin: 1rem 0;">Aku cinta kamu selamanya ❤️</p>
+            <button class="btn btn-yes share-btn" onclick="shareToWA()">Aku juga cinta kamu! 💑</button>
+        </div>
+    </div>
+
+    <script>
+        // Auto fullscreen
+        document.addEventListener('DOMContentLoaded', function() {
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen().catch(() => {});
+            }
+        });
+
+        // Hati berjatuhan
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = ['💖', '💕', '💗', '💓', '💞'][Math.floor(Math.random() * 5)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            heart.style.fontSize = (Math.random() * 10 + 15) + 'px';
+            document.querySelector('.hearts-container').appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+
+        // Tombol NO - Mouse Chase Effect
+        const noBtn = document.getElementById('noBtn');
+        let noTexts = ['Jangan tekan!', 'Pikir lagi! 💕', 'Aku serius loh ❤️', 'Jangan bohong!', 'Please yes! 🥺', 'Kamu bohong kan? 😏'];
+        let textIndex = 0;
+
+        noBtn.addEventListener('mouseenter', function(e) {
+            const rect = noBtn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+
+            const angle = Math.atan2(y, x);
+            const distance = Math.min(100, Math.sqrt(x * x + y * y));
+
+            noBtn.style.transform = `translate(${Math.sin(angle) * distance * 0.3}px, ${Math.cos(angle) * distance * 0.3}px) scale(1.1)`;
+            
+            // Ganti text
+            textIndex = (textIndex + 1) % noTexts.length;
+            noBtn.textContent = noTexts[textIndex];
+        });
+
+        noBtn.addEventListener('mouseleave', function() {
+            noBtn.style.transform = '';
+        });
+
+        // Tombol YES
+        document.getElementById('yesBtn').addEventListener('click', function() {
+            // Confetti explosion
+            for(let i = 0; i < 100; i++) {
+                createConfetti();
+            }
+
+            // Show popup
+            document.getElementById('successPopup').style.display = 'flex';
+            document.getElementById('mainPage').style.display = 'none';
+            
+            // Rainbow background
+            document.body.classList.add('rainbow-bg');
+            
+            // Hati berputar terus
+            setInterval(createHeart, 100);
+        });
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + '%';
+            confetti.style.backgroundColor = ['#ff69b4', '#ff1493', '#ff69b4', '#00ff88', '#ffd700', '#ff4500'][Math.floor(Math.random() * 6)];
+            confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            confetti.style.animationDelay = Math.random() * 0.5 + 's';
+            document.body.appendChild(confetti);
+
+            setTimeout(() => {
+                confetti.remove();
+            }, 3500);
+        }
+
+        // Share ke WhatsApp
+        function shareToWA() {
+            const message = encodeURIComponent("YESS!! Aku cinta kamu selamanya ❤️💕💖 https://wa.me/");
+            window.open(`https://wa.me/?text=${message}`, '_blank');
+        }
+
+        // Prevent right click
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        
+        // Mobile touch prevention untuk tombol NO
+        noBtn.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            const rect = noBtn.getBoundingClientRect();
+            const x = e.touches[0].clientX - rect.left;
+            const y = e.touches[0].clientY - rect.top;
+            
+            noBtn.style.transform = `translate(${x > rect.width/2 ? '20px' : '-20px'}, ${y > rect.height/2 ? '20px' : '-20px'})`;
+        }, { passive: false });
+
+        // Keyboard support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === 'y' || e.key === 'Y') {
+                document.getElementById('yesBtn').click();
+            }
+        });
+    </script>
+</body>
+</html>
